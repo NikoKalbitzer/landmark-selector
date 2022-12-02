@@ -4,9 +4,10 @@ import re
 import cv2
 
 PATH_OUTPUT = "out/"
-PATH_PICTURE = "renderPicMean.png"
+FILENAME = "TestPictureLMsMean.png"
+PATH_PICTURE = f"images/{FILENAME}"
 
-landmarks = [["SN", 0, 0], ["N-L", 0, 0], ["N-R", 0, 0]]
+landmarks = [["SN", 0, 0], ["N-L", 0, 0], ["N-R", 0, 0], ["XI", 0,0]]
 counter = 0
 
 
@@ -39,7 +40,7 @@ def click_event(event, x, y, flags, params):
 
 
 def write_to_file(lm_List):
-    with open(PATH_OUTPUT + get_name_without_ending(PATH_PICTURE) + ".tlms", "w") as f:
+    with open(PATH_OUTPUT + get_name_without_ending(FILENAME) + ".tlms", "w") as f:
         for line in lm_List:
             f.write(f"{line[0]} 1 {line[1]} {line[2]}\n")  # so far always visible
 
