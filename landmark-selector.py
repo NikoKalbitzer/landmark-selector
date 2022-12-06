@@ -4,7 +4,7 @@ import re
 import cv2
 
 PATH_OUTPUT = "out/"
-FILENAME = "TestPictureLMsMean.png"
+FILENAME = "TestPictureLMs.png"
 PATH_PICTURE = f"images/{FILENAME}"
 
 landmarks = [["SN", 0, 0, 1], ["N-L", 0, 0, 1], ["N-R", 0, 0, 1], ["XI", 0, 0, 1]]
