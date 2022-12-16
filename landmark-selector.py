@@ -1,13 +1,16 @@
 # importing the module
+import copy
 import re
 
 import cv2
 
 PATH_OUTPUT = "out/"
-FILENAME = "TestPictureLMs.png"
+FILENAME = "TestPictureLMs-left.png"
 PATH_PICTURE = f"images/{FILENAME}"
 
-landmarks = [["SN", 0, 0, 1], ["N-L", 0, 0, 1], ["N-R", 0, 0, 1], ["XI", 0, 0, 1]]
+landmarks = [["SN", 0, 0, 1], ["N-L", 0, 0, 1], ["N-R", 0, 0, 1], ["XI", 0, 0, 1], ["CP-L", 0, 0, 1], ["CP-R", 0, 0, 1], ["LBP-L", 0, 0, 1], ["LBP-R", 0, 0, 1]]
+landmarksLeft = copy.deepcopy(landmarks)
+landmarksRight = copy.deepcopy(landmarks)
 counter = 0
 
 
@@ -22,7 +25,7 @@ def click_event(event, x, y, flags, params):
 
     if event == cv2.EVENT_LBUTTONDOWN:
         if counter < len(landmarks):
-            cv2.circle(img, (x, y), radius=4, color=(0, 0, 255), thickness=-1)
+            cv2.circle(img, (x, y), radius=3, color=(255, 0, 0), thickness=-1)
             landmarks[counter][1] = x
             landmarks[counter][2] = y
             counter += 1
@@ -34,7 +37,7 @@ def click_event(event, x, y, flags, params):
 
     if event == cv2.EVENT_LBUTTONDOWN or event == cv2.EVENT_RBUTTONDOWN:
        # draw black box to override last letters
-        cv2.rectangle(img, (0, 0), (90, 30), (0, 0, 0), -1)
+        cv2.rectangle(img, (0, 0), (120, 30), (0, 0, 0), -1)
         if counter < len(landmarks):
             cv2.putText(img, landmarks[counter][0], (5, 25), font,
                 1, (255, 0, 0), 2)
